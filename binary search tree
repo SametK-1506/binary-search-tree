@@ -1,0 +1,74 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    Node* left;
+    Node* right;
+    int deger;
+    
+    Node(int val) {
+        deger = val;
+        left = NULL;  
+        right = NULL;
+    }
+}; 
+
+class binarySearchTree {
+public:
+    Node* root;
+    binarySearchTree(){
+        root=NULL;
+    }
+    bool insertNode(int deger){
+        Node* node=new Node(deger);
+        if(root==NULL){
+        root=node;
+        return true;
+    }
+        
+        Node* tmp=root;
+        while (true)
+        {
+           
+            if(tmp->deger==node->deger){
+                return false;
+            }
+            if(node->deger < tmp->deger){
+                if(tmp->left==NULL){
+                    tmp->left=node;
+                    return true;
+                }
+                tmp=tmp->left;
+
+            }
+            else{
+                if(tmp->right==NULL){
+                    tmp->right=node;
+                    return true;
+                }
+                tmp=tmp->right;
+                
+            }
+        }
+        
+    }
+
+  
+}; 
+
+int main() {
+  binarySearchTree* bst=new binarySearchTree();
+  bst->insertNode(52);
+  bst->insertNode(27);
+  bst->insertNode(15);
+  bst->insertNode(30);
+  bst->insertNode(78);
+  bst->insertNode(65);
+  bst->insertNode(53);
+  bst->insertNode(76);
+  cout<<bst->root->deger<<endl;;
+
+  cout<<"last node is "<<bst->root->right->left->right->deger>>endl;
+    return 0;
+};
